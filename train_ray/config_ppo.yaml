@@ -1,5 +1,5 @@
 env_config:
-    env_name: MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    env_name: MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
 framework: torch
 gamma: 0.99
 lr: 0.0003

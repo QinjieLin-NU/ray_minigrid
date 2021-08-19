@@ -1,0 +1,14 @@
+trainer_config:
+    env_config:
+        env_name: MiniGrid-Empty-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    framework: torch
+    gamma: 0.99
+    lr: 0.0003
+    num_workers: 5
+    model:
+        conv_filters: [
+        [32, [7, 7], 3],
+        [32, [3, 3], 3],
+        ]
+test_config:
+    restore_path: "/root/ray_results/DQN_MyEnv_2021-08-19_04-29-26035_g_2v/checkpoint_000476/checkpoint-476"

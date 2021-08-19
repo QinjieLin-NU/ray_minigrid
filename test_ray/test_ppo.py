@@ -13,23 +13,25 @@ import time
 #trainer config
 ray.init()
 config = ppo.DEFAULT_CONFIG.copy()
-loaded_config = load_config("test_ray/test_ppo.yaml")
-for key, value in loaded_config.items():
+loaded_config = load_config("test_ray/config/test_ppo.yaml")
+for key, value in loaded_config['trainer_config'].items():
     config[key] = value
     print(key,value)
 trainer = ppo.PPOTrainer(config=config, env=MyEnv)
-restore_path = "/root/ray_results/PPO_MyEnv_2021-08-19_04-35-49rg4jc1k5/checkpoint_000476/checkpoint-476" # 
+restore_path = loaded_config["test_config"]["restore_path"]
 trainer.restore(restore_path) 
 
 # run until episode ends
-env = MyEnv(loaded_config['env_config'])
+state = trainer.get_policy().model.get_initial_state()
+env = MyEnv(loaded_config['trainer_config']['env_config'])
 env.render('human')
 for i in range(100):
     episode_reward = 0
     done = False
     obs = env.reset()
     while not done:
-        action = trainer.compute_action(obs)
+        action, state, logit = trainer.compute_action(observation=obs, prev_action=1.0, 
+                                        prev_reward = 0.0, state = state)
         obs, reward, done, info = env.step(action)
         episode_reward += reward
         

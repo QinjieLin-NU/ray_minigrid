@@ -9,28 +9,29 @@ import gym_minigrid
 from train_ray import MyEnv,load_config
 import numpy as np
 import time
-from ray.rllib.models.preprocessors import get_preprocessor
 
 #trainer config
 ray.init()
 config = a3c.DEFAULT_CONFIG.copy()
-loaded_config = load_config("train_ray/config_a3c.yaml")
-for key, value in loaded_config.items():
+loaded_config = load_config("test_ray/config/test_a3c.yaml")
+for key, value in loaded_config["trainer_config"].items():
     config[key] = value
     print(key,value)
 trainer = a3c.A3CTrainer(config=config, env=MyEnv)
-restore_path = "/root/ray_results/A3C_MyEnv_2021-08-19_04-29-27z0q2g459/checkpoint_000476/checkpoint-476" # 
+restore_path = loaded_config["test_config"]["restore_path"]
 trainer.restore(restore_path) 
 
 # run until episode ends
-env = MyEnv(loaded_config['env_config'])
+state = trainer.get_policy().model.get_initial_state()
+env = MyEnv(loaded_config['trainer_config']['env_config'])
 env.render('human')
 for i in range(100):
     episode_reward = 0
     done = False
     obs = env.reset()
     while not done:
-        action = trainer.compute_action(obs)
+        action, state, logit = trainer.compute_action(observation=obs, prev_action=1.0, 
+                                        prev_reward = 0.0, state = state)
         obs, reward, done, info = env.step(action)
         episode_reward += reward
         

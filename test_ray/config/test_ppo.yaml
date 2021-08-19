@@ -1,0 +1,24 @@
+trainer_config:
+    env_config:
+        env_name: MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    framework: torch
+    gamma: 0.99
+    lr: 0.0003
+    num_workers: 5
+    num_sgd_iter: 2 #6
+    vf_loss_coeff: 0.01
+    model:
+        use_lstm: true
+        conv_activation: relu
+        # dim: 42
+        grayscale: true
+        zero_mean: false
+        # Reduced channel depth and kernel size from default
+        conv_filters: [
+            [32, [7, 7], 3],
+            [32, [3, 3], 3],
+        #     [32, [3, 3], 3],
+        #     [32, [3, 3], 3],
+        ]
+test_config:
+    restore_path: "/root/ray_results/PPO_MyEnv_2021-08-19_05-39-25rog08bhx/checkpoint_000476/checkpoint-476" #"/root/ray_results/PPO_MyEnv_2021-08-19_04-35-49rg4jc1k5/checkpoint_000476/checkpoint-476"

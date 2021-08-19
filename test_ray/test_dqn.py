@@ -13,16 +13,16 @@ import time
 #trainer config
 ray.init()
 config = dqn.DEFAULT_CONFIG.copy()
-loaded_config = load_config("test_ray/test_dqn.yaml")
-for key, value in loaded_config.items():
+loaded_config = load_config("test_ray/config/test_dqn.yaml")
+for key, value in loaded_config['trainer_config'].items():
     config[key] = value
     print(key,value)
 trainer = dqn.DQNTrainer(config=config, env=MyEnv)
-restore_path = "/root/ray_results/DQN_MyEnv_2021-08-19_04-29-26035_g_2v/checkpoint_000476/checkpoint-476" # 
+restore_path = loaded_config["test_config"]["restore_path"]
 trainer.restore(restore_path) 
 
 # run until episode ends
-env = MyEnv(loaded_config['env_config'])
+env = MyEnv(loaded_config['trainer_config']['env_config'])
 env.render('human')
 for i in range(100):
     episode_reward = 0
