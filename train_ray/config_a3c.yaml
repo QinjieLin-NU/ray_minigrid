@@ -1,0 +1,12 @@
+env_config:
+    env_name: MiniGrid-Empty-5x5-v0
+framework: torch
+num_workers: 1
+gamma: 0.95
+model:
+    use_lstm: true
+    conv_activation: relu
+    conv_filters: [
+    [32, [7, 7], 3],
+    [32, [3, 3], 3],
+    ]
