@@ -14,3 +14,7 @@ class MyEnv(gym.Env):
         _state, _r, _d, _info = self.env.step(action)
         _obs = _state['image']
         return _obs, _r, _d, _info
+
+    def render(self,mode):
+        self.env.render(mode)
+        return
