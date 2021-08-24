@@ -1,6 +1,6 @@
 trainer_config:
     env_config:
-        env_name:  MiniGrid-Empty-5x5-v0
+        env_name:  MiniGrid-DoorKey-5x5-v0 
     framework: torch
     num_workers: 1
     gamma: 0.95
@@ -12,4 +12,4 @@ trainer_config:
         [32, [3, 3], 3],
         ]
 test_config:
-    restore_path: "/root/ray_results/A3C_MyEnv_2021-08-19_04-29-27z0q2g459/checkpoint_000476/checkpoint-476"
+    restore_path: "/root/ray_results/A3C_MyEnv_2021-08-19_05-39-56haffmvsb/checkpoint_000476/checkpoint-476" #"/root/ray_results/A3C_MyEnv_2021-08-19_04-29-27z0q2g459/checkpoint_000476/checkpoint-476"

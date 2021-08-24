@@ -13,7 +13,7 @@ import time
 #trainer config
 ray.init()
 config = ppo.DEFAULT_CONFIG.copy()
-loaded_config = load_config("test_ray/config/test_ppo_doorkey8.yaml")
+loaded_config = load_config("test_ray/config/test_ppo.yaml")
 for key, value in loaded_config['trainer_config'].items():
     config[key] = value
     print(key,value)
@@ -30,9 +30,9 @@ for i in range(100):
     done = False
     obs = env.reset()
     while not done:
-        # action, state, logit = trainer.compute_action(observation=obs, prev_action=1.0, 
-                                        # prev_reward = 0.0, state = state)
-        action = trainer.compute_action(observation=obs)
+        action, state, logit = trainer.compute_action(observation=obs, prev_action=1.0, 
+                                        prev_reward = 0.0, state = state)
+        # action = trainer.compute_action(observation=obs)
         obs, reward, done, info = env.step(action)
         episode_reward += reward
         

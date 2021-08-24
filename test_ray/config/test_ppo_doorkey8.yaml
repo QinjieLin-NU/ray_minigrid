@@ -1,0 +1,18 @@
+trainer_config:
+    env_config:
+        env_name: MiniGrid-DoorKey-8x8-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    framework: torch
+    lr: 0.0003
+    num_workers: 1
+    num_sgd_iter: 2
+    sgd_minibatch_size: 32 
+    train_batch_size:  2560 
+    observation_filter: MeanStdFilter
+    model:
+        # Reduced channel depth and kernel size from default
+        conv_filters: [
+            [32, [7, 7], 3],
+            [32, [3, 3], 3],
+        ]
+test_config:
+    restore_path:  /root/ray_results/PPO_MyEnv_2021-08-24_15-31-098ex5cpr3/checkpoint_000976/checkpoint-976 #"/root/ray_results/PPO_MyEnv_2021-08-19_05-39-25rog08bhx/checkpoint_000476/checkpoint-476" #"/root/ray_results/PPO_MyEnv_2021-08-19_04-35-49rg4jc1k5/checkpoint_000476/checkpoint-476"

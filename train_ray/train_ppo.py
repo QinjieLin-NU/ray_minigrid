@@ -11,7 +11,7 @@ import numpy as np
 import pickle
 
 #trainer config, refer config to ppo tuned example
-ray.init()
+ray.init(num_cpus=20)
 config = ppo.DEFAULT_CONFIG.copy()
 loaded_config = load_config("train_ray/config_ppo.yaml")
 for key, value in loaded_config.items():
@@ -21,7 +21,7 @@ trainer = ppo.PPOTrainer(config=config, env=MyEnv)
 
 # Perform iterations of training the policy with PPO
 reward_array = []
-for i in range(500):
+for i in range(1000):
     result = trainer.train()
     mean_reward = result["episode_reward_mean"]
     reward_array.append(mean_reward)

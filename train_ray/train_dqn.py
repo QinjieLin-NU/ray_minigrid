@@ -22,7 +22,7 @@ trainer = dqn.DQNTrainer(config=config, env=MyEnv)
 
 # Perform iterations of training the policy with PPO
 reward_array = []
-for i in range(500):
+for i in range(1000):
     result = trainer.train()
     mean_reward = result["episode_reward_mean"]
     reward_array.append(mean_reward)

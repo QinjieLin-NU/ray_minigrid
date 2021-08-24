@@ -1,12 +1,15 @@
 env_config:
-    env_name:  MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    env_name:  MiniGrid-DoorKey-8x8-v0  #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
 framework: torch
 num_workers: 1
 gamma: 0.95
 model:
+    fcnet_hiddens: [256, 256]
     use_lstm: true
     conv_activation: relu
     conv_filters: [
     [32, [7, 7], 3],
     [32, [3, 3], 3],
+    # [32, [3, 3], 3],
+    # [32, [3, 3], 3],
     ]
