@@ -10,10 +10,18 @@ from train_ray import MyEnv,load_config
 import numpy as np
 import time
 
+import argparse
+parser = argparse.ArgumentParser(description='')
+parser.add_argument('--config', type=str, default="test_ray/config/test_ppo_corridor.yaml",
+                    help='')
+args = parser.parse_args()
+config_file = args.config
+print(config_file)
+
 #trainer config
 ray.init()
 config = ppo.DEFAULT_CONFIG.copy()
-loaded_config = load_config("test_ray/config/test_ppo_corridor.yaml")
+loaded_config = load_config(config_file)
 for key, value in loaded_config['trainer_config'].items():
     config[key] = value
     print(key,value)
