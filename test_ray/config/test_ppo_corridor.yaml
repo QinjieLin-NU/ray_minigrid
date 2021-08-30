@@ -1,0 +1,25 @@
+trainer_config:
+  env_config:
+      env_name: MiniGrid-KeyCorridorS3R3-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+  framework: torch
+  gamma: 0.995
+  lr: 0.0003
+  num_workers: 1
+  num_sgd_iter: 2
+  sgd_minibatch_size: 3200 #32768
+  train_batch_size:  160000 #320000
+  observation_filter: MeanStdFilter
+  model:
+      conv_activation: relu
+      dim: 7
+      # Reduced channel depth and kernel size from default
+      fcnet_hiddens: [256, 256]
+      fcnet_activation: relu
+      conv_filters: [
+          [32, [2, 2], 1],
+          [32, [2, 2], 2],
+          [32, [2, 2], 2],
+          [32, [2, 2], 2],
+      ]
+test_config:
+    restore_path:  /root/ray_results/PPO_MyEnv_2021-08-26_22-11-04uc0kr7i2/checkpoint_000976/checkpoint-976 #

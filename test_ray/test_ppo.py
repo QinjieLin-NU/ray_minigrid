@@ -13,7 +13,7 @@ import time
 #trainer config
 ray.init()
 config = ppo.DEFAULT_CONFIG.copy()
-loaded_config = load_config("test_ray/config/test_ppo_doorkey8.yaml")
+loaded_config = load_config("test_ray/config/test_ppo_corridor.yaml")
 for key, value in loaded_config['trainer_config'].items():
     config[key] = value
     print(key,value)

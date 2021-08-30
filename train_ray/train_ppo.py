@@ -13,7 +13,7 @@ import pickle
 #trainer config, refer config to ppo tuned example
 ray.init(num_cpus=20)
 config = ppo.DEFAULT_CONFIG.copy()
-loaded_config = load_config("train_ray/config_ppo.yaml")
+loaded_config = load_config("train_ray/config_ppo_corridor.yaml")
 for key, value in loaded_config.items():
     config[key] = value
     print(key,value)

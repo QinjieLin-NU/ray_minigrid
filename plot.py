@@ -4,7 +4,7 @@ import numpy as np
 
 data_array = []
 labels = ['ppo','a3c','dqn']
-with open('data/ppo.pkl', 'rb') as f:
+with open('data/ppo5.pkl', 'rb') as f:
     data = pickle.load(f)
     data_array.append(data)   
 # with open('data/a3c.pkl', 'rb') as f:
