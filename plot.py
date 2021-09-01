@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 import pickle
 import numpy as np
+import seaborn as sns
+
+
 def smooth(scalars, weight):   # Weight between 0 and 1
     last = scalars[0]  # First value in the plot (first timestep)
     smoothed = list()
@@ -9,6 +12,17 @@ def smooth(scalars, weight):   # Weight between 0 and 1
         smoothed.append(smoothed_val)                        # Save it
         last = smoothed_val                                  # Anchor the last smoothed value
     return smoothed
+
+def devide_data(raw_data,delta):
+    raw_xs = list(range(len(raw_data)))
+    _index = 0
+    devide_xs  = []
+    smooth_ys = smooth(raw_data,0.5) 
+    for x in raw_xs:
+        devide_xs.append(_index)
+        if (x+1)%delta==0:
+            _index +=1
+    return devide_xs, smooth_ys
 
 class FileLabel:
     def __init__(self,gama,iter_num,mini_batchsize,train_batchsize):
@@ -24,6 +38,10 @@ class FileLabel:
     def get_label(self):
         res = f"gama{self.gama}_iter{self.iter_num}_minibatch{self.mini_batchsize}_trainbatch{self.train_batchsize}.pkl"
         return res
+    
+    def get_xscal(self):
+        res = self.train_batchsize / 80000
+        return int(res)
 
 data_array = []
 # labels = ['ppo','a3c','dqn']
@@ -51,8 +69,9 @@ for t in ts:
         data = pickle.load(f)
         data_array.append(data) 
 
+plt.style.use('seaborn-darkgrid')
 for i in range(len(data_array)):
-    smooth_data= smooth(data_array[i],0.5)
-    plt.plot(smooth_data,label=labels[i])
+    x,y = devide_data(data_array[i],10/ts[i].get_xscal())
+    sns.lineplot(x=x,y=y,label=labels[i])
 plt.legend()
 plt.show()
