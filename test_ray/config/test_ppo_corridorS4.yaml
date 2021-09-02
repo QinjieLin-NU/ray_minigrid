@@ -1,0 +1,32 @@
+trainer_config:
+  env_config:
+      env_name: MiniGrid-KeyCorridorS4R3-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+  framework: torch
+  gamma: 0.995
+  lr: 0.0003
+  num_workers: 1
+  num_envs_per_worker: 1
+  num_sgd_iter: 2
+  sgd_minibatch_size: 1024 #32768
+  train_batch_size:  320000 #320000
+  observation_filter: MeanStdFilter
+  seed: 12345
+  rollout_fragment_length: 500
+  # explore: false
+  model:
+      # use_lstm: true
+      conv_activation: relu
+      dim: 7
+      # grayscale: true
+      # zero_mean: false
+      # Reduced channel depth and kernel size from default
+      fcnet_hiddens: [256, 256]
+      fcnet_activation: relu
+      conv_filters: [
+          [32, [2, 2], 1],
+          [32, [2, 2], 2],
+          [32, [2, 2], 2],
+          [32, [2, 2], 2],
+      ]
+test_config:
+    restore_path:  test_ray/model/ppo_corridorS4/checkpoint-76

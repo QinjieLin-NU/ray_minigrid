@@ -1,14 +1,16 @@
 env_config:
-    env_name: MiniGrid-KeyCorridorS3R3-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    env_name: MiniGrid-KeyCorridorS4R3-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
 framework: torch
 gamma: 0.995
 lr: 0.0003
-num_workers: 5
+num_workers: 8
 num_envs_per_worker: 4
 num_sgd_iter: 2
-sgd_minibatch_size: 3200 #32768
-train_batch_size:  160000 #320000
+sgd_minibatch_size: 1024 #32768
+train_batch_size:  320000 #320000
 observation_filter: MeanStdFilter
+seed: 12345
+rollout_fragment_length: 200
 model:
     # use_lstm: true
     conv_activation: relu

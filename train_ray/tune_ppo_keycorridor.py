@@ -9,11 +9,13 @@ import numpy as np
 import pickle
 from ray.tune.suggest.bayesopt import BayesOptSearch
 
+env_name = 'MiniGrid-KeyCorridorS5R3-v0'
+ray_envname = 'Ray-%s'%env_name
 #register env
 def env_creator(env_config):
     from train_ray import RegisterEnv
-    return RegisterEnv('MiniGrid-KeyCorridorS3R3-v0')   # return an env instance
-register_env("my_env", env_creator)
+    return RegisterEnv(env_name)   # return an env instance
+register_env(ray_envname, env_creator)
 
 def on_train_result(info):
     result = info["result"]
@@ -23,15 +25,16 @@ def on_train_result(info):
 ray.init(num_cpus=30)
 tune.run(
     "PPO",
-    stop={"training_iteration": 10000, "episode_reward_mean": 0.95},
+    stop={"training_iteration": 1000, "episode_reward_mean": 0.95},
     config={
-        "env": "my_env",
+        "env": ray_envname,
         "framework": "torch",
         "lr":  0.0003,
-        "train_batch_size": tune.grid_search([160000, 80000]),
-        "sgd_minibatch_size": tune.grid_search([3200, 1600]) ,
-        "num_sgd_iter" : tune.grid_search([2,20]),
-        "gamma": tune.grid_search([0.995,0.9]),
+        "train_batch_size": tune.grid_search([320000,480000]),
+        "sgd_minibatch_size": tune.grid_search([1024]) ,
+        "num_sgd_iter" : tune.grid_search([2]),
+        "gamma": tune.grid_search([0.995]),
+        "rollout_fragment_length":  tune.grid_search([200,800,10000]),
         "num_workers": 2,
         "num_envs_per_worker": 5,
         "observation_filter": "MeanStdFilter",
@@ -43,6 +46,7 @@ tune.run(
                 [32, [2, 2], 2],
             ]
         },
+        "seed":12345,
         "callbacks": {
             "on_train_result": on_train_result,
         },

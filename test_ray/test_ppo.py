@@ -33,6 +33,7 @@ trainer.restore(restore_path)
 state = trainer.get_policy().model.get_initial_state()
 env = MyEnv(loaded_config['trainer_config']['env_config'])
 env.render('human')
+env.seed(0)
 for i in range(100):
     episode_reward = 0
     done = False
@@ -45,5 +46,5 @@ for i in range(100):
         episode_reward += reward
         
         env.render('human')
-        time.sleep(0.1)
+        # time.sleep(0.1)
     print("episode reward:",episode_reward)

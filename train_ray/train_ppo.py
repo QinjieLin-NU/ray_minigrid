@@ -21,6 +21,7 @@ trainer = ppo.PPOTrainer(config=config, env=MyEnv)
 
 # Perform iterations of training the policy with PPO
 reward_array = []
+file_name = f"data/ppo_{config['env_config']['env_name']}_{config['gamma']}_{config['num_sgd_iter']}_{config['sgd_minibatch_size']}_{config['train_batch_size']}.pkl"
 for i in range(1000):
     result = trainer.train()
     mean_reward = result["episode_reward_mean"]
@@ -29,7 +30,10 @@ for i in range(1000):
     if i % 25 == 0:
         checkpoint = trainer.save()
         print("checkpoint saved at", checkpoint)
+        #save learning curve
+        with open(file_name, 'wb') as f:
+            pickle.dump(reward_array, f)
 
 #save learning curve
-with open('data/ppo.pkl', 'wb') as f:
+with open(file_name, 'wb') as f:
     pickle.dump(reward_array, f)
