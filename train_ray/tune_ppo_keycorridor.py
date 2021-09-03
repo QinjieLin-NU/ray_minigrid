@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 from ray.tune.suggest.bayesopt import BayesOptSearch
 
-env_name = 'MiniGrid-KeyCorridorS5R3-v0'
+env_name = 'MiniGrid-KeyCorridorS4R3-v0'
 ray_envname = 'Ray-%s'%env_name
 #register env
 def env_creator(env_config):
@@ -30,11 +30,11 @@ tune.run(
         "env": ray_envname,
         "framework": "torch",
         "lr":  0.0003,
-        "train_batch_size": tune.grid_search([320000,480000]),
-        "sgd_minibatch_size": tune.grid_search([1024]) ,
-        "num_sgd_iter" : tune.grid_search([2]),
+        "train_batch_size": tune.grid_search([40000]),
+        "sgd_minibatch_size": tune.grid_search([256]) ,
+        "num_sgd_iter" : tune.grid_search([2,10,20,32]),
         "gamma": tune.grid_search([0.995]),
-        "rollout_fragment_length":  tune.grid_search([200,800,10000]),
+        "rollout_fragment_length":  tune.grid_search([500]),
         "num_workers": 2,
         "num_envs_per_worker": 5,
         "observation_filter": "MeanStdFilter",

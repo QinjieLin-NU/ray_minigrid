@@ -40,7 +40,7 @@ class FileLabel:
         return res
     
     def get_xscal(self):
-        res = self.train_batchsize / 80000
+        res = self.train_batchsize / 10000
         return int(res)
 
 data_array = []
@@ -55,13 +55,17 @@ data_array = []
     # data = pickle.load(f) 
     # data_array.append(data)  
 
-t1 = FileLabel(0.995, 2, 3200 ,160000)
-t2 = FileLabel(0.9, 2, 3200, 160000)
-t3 = FileLabel(0.995, 20, 3200 ,160000)
-t4 = FileLabel(0.995, 2, 1600 ,160000)
-t5 = FileLabel(0.995, 2, 3200 ,80000)
-ts = [t1,t2,t3,t4,t5]
-labels = [t1.get_label(),t2.get_label(),t3.get_label(),t4.get_label(),t5.get_label()]
+ts=[]
+# ts.append(FileLabel(0.995, 2, 3200 ,160000))
+ts.append(FileLabel(0.9, 2, 3200, 160000))
+ts.append(FileLabel(0.995, 20, 3200 ,160000))
+# ts.append(FileLabel(0.995, 2, 1600 ,160000))
+# ts.append(FileLabel(0.995, 2, 3200 ,80000))
+# ts.append(FileLabel(0.995, 2, 256 ,80000))
+ts.append(FileLabel(0.995, 2, 256 ,40000))
+ts.append(FileLabel(0.995, 2, 256 ,10000))
+# ts = [t1,t2,t3,t4,t5,t6,t7,t8]
+labels = [t.get_label() for t in ts]
 
 for t in ts:
     file_name = 'data/%s'%t.get_filename()
@@ -71,7 +75,7 @@ for t in ts:
 
 plt.style.use('seaborn-darkgrid')
 for i in range(len(data_array)):
-    x,y = devide_data(data_array[i],10/ts[i].get_xscal())
+    x,y = devide_data(data_array[i],1/ts[i].get_xscal())
     sns.lineplot(x=x,y=y,label=labels[i])
 plt.legend()
 plt.show()
