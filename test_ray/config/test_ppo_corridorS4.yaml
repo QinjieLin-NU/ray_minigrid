@@ -29,4 +29,4 @@ trainer_config:
           [32, [2, 2], 2],
       ]
 test_config:
-    restore_path:  test_ray/model/ppo_corridorS4/checkpoint-76 #/root/ray_results/PPO_MyEnv_2021-09-02_15-23-30z6z6tm74/checkpoint_000226/checkpoint-226 #test_ray/model/ppo_corridorS4/checkpoint-76
+    restore_path:  test_ray/model/ppo_corridorS4/checkpoint-976 #/root/ray_results/PPO_MyEnv_2021-09-02_15-23-30z6z6tm74/checkpoint_000976/checkpoint-976
