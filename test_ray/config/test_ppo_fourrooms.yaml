@@ -1,0 +1,29 @@
+trainer_config:
+  env_config:
+      env_name: MiniGrid-FourRooms-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+  framework: torch
+  gamma: 0.995
+  lr: 0.0003
+  num_workers: 1
+  # vf_loss_coeff: 0.01
+  num_sgd_iter: 2
+  sgd_minibatch_size: 256 #32768
+  train_batch_size:  40000 #320000
+  observation_filter: MeanStdFilter
+  model:
+      # use_lstm: true
+      conv_activation: relu
+      dim: 7
+      # grayscale: true
+      # zero_mean: false
+      # Reduced channel depth and kernel size from default
+      fcnet_hiddens: [256, 256]
+      fcnet_activation: relu
+      conv_filters: [
+          [32, [2, 2], 1],
+          [32, [2, 2], 2],
+          [32, [2, 2], 2],
+          [32, [2, 2], 2],
+      ]
+test_config:
+    restore_path:  /root/ray_results/PPO_MyEnv_2021-09-11_03-46-33_file7ab/checkpoint_000326/checkpoint-326

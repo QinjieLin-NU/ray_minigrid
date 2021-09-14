@@ -46,5 +46,5 @@ for i in range(100):
         episode_reward += reward
         
         env.render('human')
-        # time.sleep(0.1)
+        time.sleep(0.1)
     print("episode reward:",episode_reward)
