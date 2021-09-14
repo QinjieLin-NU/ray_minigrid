@@ -57,13 +57,13 @@ data_array = []
 
 ts=[]
 # ts.append(FileLabel(0.995, 2, 3200 ,160000))
-ts.append(FileLabel(0.9, 2, 3200, 160000))
+# ts.append(FileLabel(0.9, 2, 3200, 160000))
 ts.append(FileLabel(0.995, 20, 3200 ,160000))
 # ts.append(FileLabel(0.995, 2, 1600 ,160000))
 # ts.append(FileLabel(0.995, 2, 3200 ,80000))
 # ts.append(FileLabel(0.995, 2, 256 ,80000))
-ts.append(FileLabel(0.995, 2, 256 ,40000))
-ts.append(FileLabel(0.995, 2, 256 ,10000))
+# ts.append(FileLabel(0.995, 2, 256 ,40000))
+# ts.append(FileLabel(0.995, 2, 256 ,10000))
 # ts = [t1,t2,t3,t4,t5,t6,t7,t8]
 labels = [t.get_label() for t in ts]
 

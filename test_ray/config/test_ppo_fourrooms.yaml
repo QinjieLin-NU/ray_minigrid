@@ -26,4 +26,4 @@ trainer_config:
           [32, [2, 2], 2],
       ]
 test_config:
-    restore_path:  /root/ray_results/PPO_MyEnv_2021-09-11_03-46-33_file7ab/checkpoint_000326/checkpoint-326
+    restore_path: test_ray/model/ppo_fourrooms/checkpoint-326 #/root/ray_results/PPO_MyEnv_2021-09-11_03-46-33_file7ab/checkpoint_000326/checkpoint-326
