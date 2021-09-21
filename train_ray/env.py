@@ -1,5 +1,6 @@
 import gym
 import gym_minigrid
+import envs
 
 class MyEnv(gym.Env):
     def __init__(self, env_config):

@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 from ray.tune.suggest.bayesopt import BayesOptSearch
 
-env_name = 'MiniGrid-FourRooms-v0'
+env_name = 'MiniGrid-FourRooms-Continuous-v0'
 ray_envname = 'Ray-%s'%env_name
 #register env
 def env_creator(env_config):
