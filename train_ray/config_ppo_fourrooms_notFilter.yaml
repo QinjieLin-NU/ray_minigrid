@@ -1,5 +1,5 @@
 env_config:
-    env_name: MiniGrid-FourRooms-Continuous-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    env_name: MiniGrid-FourRooms-v0 #MiniGrid-FourRooms-Continuous-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
 framework: torch
 seed: 123
 gamma: 0.995
