@@ -1,0 +1,19 @@
+env_config:
+    env_name: MiniGrid-FourRooms-v0  #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+# Number of atoms for representing the distribution of return. When
+# this is greater than 1, distributional Q-learning is used.
+# the discrete supports are bounded by v_min and v_max
+# num_atoms: 10
+# dueling: True
+framework: torch
+gamma: 0.99
+lr: 0.0003
+num_workers: 5
+model:
+    fcnet_hiddens: [256, 256]
+    conv_filters: [
+    [32, [7, 7], 3],
+    [32, [3, 3], 3],
+    ]
+output: "/root/dev_ws/offline_dataset/dqn_fourrooms"
+output_max_file_size: 500000000 #500m

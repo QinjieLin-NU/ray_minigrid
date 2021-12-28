@@ -3,21 +3,18 @@ env_config:
 framework: torch
 seed: 12345
 gamma: 0.995
-lr: 0.0003
-num_workers: 20
-# num_envs_per_worker: 4
+lr: 0.00005
+train_batch_size: 640000 #320000 
+sgd_minibatch_size: 1024 
 num_sgd_iter: 2
-sgd_minibatch_size: 256 #1024 
-train_batch_size: 10000 #320000 
-observation_filter: MeanStdFilter
-rollout_fragment_length: 200
+rollout_fragment_length: 500
+num_workers: 20 #20
+num_envs_per_worker: 5 #5
+num_gpus: 2
 model:
     # use_lstm: true
     conv_activation: relu
     dim: 7
-    # grayscale: true
-    # zero_mean: false
-    # Reduced channel depth and kernel size from default
     fcnet_hiddens: [256, 256]
     fcnet_activation: relu
     conv_filters: [
@@ -26,5 +23,5 @@ model:
         [32, [2, 2], 2],
         [32, [2, 2], 2],
     ]
-output: "/root/dev_ws/offline_dataset/ppo_corridor"
+output: "/root/dev_ws/offline_dataset/ppo_corridor_nofilter"
 output_max_file_size: 500000000 #500m

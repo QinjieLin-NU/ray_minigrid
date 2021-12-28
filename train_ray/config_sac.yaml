@@ -1,0 +1,61 @@
+env_config:
+    env_name: MiniGrid-FourRooms-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+# Works for both torch and tf.
+framework: torch
+gamma: 0.99
+# Do hard syncs.
+# Soft-syncs seem to work less reliably for discrete action spaces.
+tau: 1.0
+target_network_update_freq: 8000
+# auto = 0.98 * -log(1/|A|)
+target_entropy: auto
+clip_rewards: 1.0
+no_done_at_end: False
+n_step: 1
+prioritized_replay: true
+rollout_fragment_length: 100 # 1
+train_batch_size: 256 #64
+timesteps_per_iteration: 4
+# Paper uses 20k random timesteps, which is not exactly the same, but
+# seems to work nevertheless. We use 100k here for the longer Atari
+# runs (DQN style: filling up the buffer a bit before learning).
+learning_starts: 100000
+optimization:
+    actor_learning_rate: 0.0003
+    critic_learning_rate: 0.0003
+    entropy_learning_rate: 0.0003
+num_workers: 20
+num_gpus: 0
+metrics_smoothing_episodes: 5
+policy_model:
+    # use_lstm: true
+    conv_activation: relu
+    dim: 7
+    # grayscale: true
+    # zero_mean: false
+    # Reduced channel depth and kernel size from default
+    fcnet_hiddens: [256, 256]
+    fcnet_activation: relu
+    conv_filters: [
+        [32, [2, 2], 1],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+    ]
+Q_model:
+    # use_lstm: true
+    conv_activation: relu
+    dim: 7
+    # grayscale: true
+    # zero_mean: false
+    # Reduced channel depth and kernel size from default
+    fcnet_hiddens: [256, 256]
+    fcnet_activation: relu
+    conv_filters: [
+        [32, [2, 2], 1],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+    ]
+output: "/root/dev_ws/offline_dataset/sac_fourrooms"
+output_max_file_size: 500000000 #500m

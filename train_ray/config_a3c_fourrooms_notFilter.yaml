@@ -1,0 +1,29 @@
+env_config:
+    env_name: MiniGrid-FourRooms-v0 #MiniGrid-FourRooms-Continuous-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+framework: torch
+seed: 123
+# gamma: 0.995
+# lr: 0.0003
+# num_workers: 20 #15
+# train_batch_size:  10000 
+preprocessor_pref: rllib
+model:
+    use_lstm: true
+    conv_activation: relu
+    # dim: 7
+    # fcnet_hiddens: [256, 256]
+    # fcnet_activation: relu
+    conv_filters: [
+    [32, [7, 7], 3],
+    [32, [3, 3], 3],
+    ]
+output: "/root/dev_ws/offline_dataset/a3c_fourrooms" #prefix
+output_max_file_size: 500000000 #500m
+
+# env_config:
+#     env_name: CartPole-v0
+# framework: tf
+# num_workers: 20
+# lr: 0.001
+# output: "/root/dev_ws/offline_dataset/a3c_cartpole" #prefix
+# output_max_file_size: 500000000 #500m

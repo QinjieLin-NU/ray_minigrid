@@ -28,15 +28,24 @@ tune.run(
         "env": "my_env",
         "framework": "torch",
         "lr":  0.0003,
+        "seed": tune.grid_search([123, 456]),
         "train_batch_size": tune.grid_search([2560, 4096]),
         "sgd_minibatch_size": tune.grid_search([256, 32]) ,
         "num_sgd_iter" : tune.grid_search([2,20]),
         "num_workers": 2,
-        "observation_filter": "MeanStdFilter",
+        # "observation_filter": "MeanStdFilter",
         "model": {
+            "use_lstm": True,
+            "conv_activation": "relu",
+            "dim": 7,
+            "grayscale": True,
+            # zero_mean: false
+            # Reduced channel depth and kernel size from default
+            # fcnet_hiddens: [256, 256]
+            # fcnet_activation: relu
             "conv_filters": [
-            [32, [7, 7], 3],
-            [32, [3, 3], 3],
+                [32, [7, 7], 3],
+                [32, [3, 3], 3],
             ]
         },
         "callbacks": {

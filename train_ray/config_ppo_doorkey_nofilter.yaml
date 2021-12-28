@@ -7,13 +7,13 @@ lr: 0.0003
 num_workers: 20
 # vf_loss_coeff: 0.01
 num_sgd_iter: 2
-sgd_minibatch_size: 256 #32 
-train_batch_size:  2560 #2560
-observation_filter: MeanStdFilter
+rollout_fragment_length: 500
+sgd_minibatch_size: 256 #256 
+train_batch_size:  32000 #2560
 model:
-    # use_lstm: true
-    # conv_activation: relu
-    # dim: 7
+    use_lstm: true
+    conv_activation: relu
+    dim: 7
     # grayscale: true
     # zero_mean: false
     # Reduced channel depth and kernel size from default
@@ -23,5 +23,5 @@ model:
         [32, [7, 7], 3],
         [32, [3, 3], 3],
     ]
-output: "/root/dev_ws/offline_dataset/ppo_doorkey"
+output: "/root/dev_ws/offline_dataset/ppo_doorkey_nofilter"
 output_max_file_size: 500000000 #500m

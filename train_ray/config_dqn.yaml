@@ -4,6 +4,14 @@ framework: torch
 gamma: 0.99
 lr: 0.0003
 num_workers: 5
+double_q: false
+dueling: false
+n_step: 1
+target_network_update_freq: 8000
+hiddens: [512]
+# buffer_size: 1000000
+# rollout_fragment_length: 4
+# timesteps_per_iteration: 10000
 model:
     fcnet_hiddens: [256, 256]
     conv_filters: [

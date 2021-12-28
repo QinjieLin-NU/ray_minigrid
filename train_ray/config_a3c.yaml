@@ -1,5 +1,5 @@
 env_config:
-    env_name:  MiniGrid-DoorKey-8x8-v0  #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    env_name:  MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-8x8-v0  #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
 framework: torch
 num_workers: 1
 gamma: 0.95
@@ -13,3 +13,5 @@ model:
     # [32, [3, 3], 3],
     # [32, [3, 3], 3],
     ]
+output: "/root/dev_ws/offline_dataset/a3c_fourrooms" #prefix
+output_max_file_size: 500000000 #500m
