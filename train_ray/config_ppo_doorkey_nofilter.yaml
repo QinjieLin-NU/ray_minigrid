@@ -9,7 +9,7 @@ num_envs_per_worker: 5
 num_sgd_iter: 2
 rollout_fragment_length: 500
 sgd_minibatch_size: 256 #256 
-train_batch_size:  32000 #2560
+train_batch_size:  64000 #32000 #2560
 model:
     # use_lstm: true
     conv_activation: relu
@@ -20,8 +20,10 @@ model:
     # fcnet_hiddens: [256, 256]
     # fcnet_activation: relu
     conv_filters: [
-        [32, [7, 7], 3],
-        [32, [3, 3], 3],
+        [32, [2, 2], 1],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
     ]
 output: "/root/dev_ws/offline_dataset/ppo_doorkey_nofilter"
 output_max_file_size: 500000000 #500m
