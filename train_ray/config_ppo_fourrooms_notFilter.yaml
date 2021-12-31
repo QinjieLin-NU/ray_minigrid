@@ -1,14 +1,15 @@
 env_config:
     env_name: MiniGrid-FourRooms-v0 #MiniGrid-FourRooms-Continuous-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
 framework: torch
+lr: 0.0003
 seed: 123
 gamma: 0.995
-lr: 0.0003
 num_workers: 20 #15
-# vf_loss_coeff: 0.01
-num_sgd_iter: 3 #3 id for default training dataset
-sgd_minibatch_size:  512 
-train_batch_size:  10000 
+num_envs_per_worker: 5
+num_sgd_iter: 2 #3 id for default training dataset
+rollout_fragment_length: 500
+sgd_minibatch_size:  256 #512 
+train_batch_size:  40000 #10000 
 # observation_filter: MeanStdFilter
 model:
     # use_lstm: true
@@ -25,5 +26,5 @@ model:
         [32, [2, 2], 2],
         [32, [2, 2], 2],
     ]
-output: "/root/dev_ws/offline_dataset/ppo_fourrooms_continuous_notfilter"
+output: "/root/dev_ws/offline_dataset/ppo_fourrooms_notfilter"
 output_max_file_size: 500000000 #500m

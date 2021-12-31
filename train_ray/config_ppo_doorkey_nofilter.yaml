@@ -5,13 +5,13 @@ seed: 123
 # gamma: 0.99
 lr: 0.0003
 num_workers: 20
-# vf_loss_coeff: 0.01
+num_envs_per_worker: 5
 num_sgd_iter: 2
 rollout_fragment_length: 500
 sgd_minibatch_size: 256 #256 
 train_batch_size:  32000 #2560
 model:
-    use_lstm: true
+    # use_lstm: true
     conv_activation: relu
     dim: 7
     # grayscale: true

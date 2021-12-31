@@ -28,7 +28,7 @@ trainer = ppo.PPOTrainer(config=config, env=MyEnv)
 # Perform iterations of training the policy with PPO
 reward_array = []
 file_name = f"data/ppo_{config['env_config']['env_name']}_{config['gamma']}_{config['num_sgd_iter']}_{config['sgd_minibatch_size']}_{config['train_batch_size']}.pkl"
-for i in range(1500): #200 1000
+for i in range(200): #200(corridor) 200(doorkey) 400(fourrooms)
     result = trainer.train()
     mean_reward = result["episode_reward_mean"]
     reward_array.append(mean_reward)
