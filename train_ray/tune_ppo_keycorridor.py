@@ -9,7 +9,7 @@ import numpy as np
 import pickle
 from ray.tune.suggest.bayesopt import BayesOptSearch
 
-env_name = 'MiniGrid-KeyCorridorS4R3-v0'
+env_name = 'MiniGrid-KeyCorridor-MediumRawPartial-v0'
 ray_envname = 'Ray-%s'%env_name
 #register env
 def env_creator(env_config):
@@ -29,28 +29,34 @@ tune.run(
     config={
         "env": ray_envname,
         "framework": "torch",
-        "lr": tune.grid_search([5e-5,1e-5,5e-4]), #0.001 0.0003
-        "seed": tune.grid_search([12345, 45678]),
-        "train_batch_size": tune.grid_search([32000,64000]), #640000
+        "lr": tune.grid_search([ 5e-5]), # 3e-4, 1e-3,5e-5
+        "seed": tune.grid_search([12345, 45678, 91011]),
+        "train_batch_size": tune.grid_search([64000,32000]), #640000
         "sgd_minibatch_size": tune.grid_search([256,512]) , #1024
         "num_sgd_iter" : 2,
         "gamma": 0.995,
-        "rollout_fragment_length":  tune.grid_search([200,500]),
+        "rollout_fragment_length":  500, #tune.grid_search([200,500]),
         "num_workers": 5, #5
         "num_envs_per_worker": 5, #1
         # "observation_filter": "MeanStdFilter",
         "model": {
-            "conv_activation": "relu",
-            "dim": 7,
+            # "conv_activation": "relu",
+            "dim": 9,
             "conv_filters": [
-                [32, [2, 2], 1],
+                [32, [3, 3], 1],
                 [32, [2, 2], 2],
                 [32, [2, 2], 2],
                 [32, [2, 2], 2],
+                # [32, [10,10], 3],
+                # [32, [3, 3], 3],
             ],
-            "fcnet_hiddens": [256, 256],
-            "fcnet_activation": "relu",
+            # "fcnet_hiddens": [256, 256],
+            # "fcnet_activation": "relu",
         },
+        # "explore": True,
+        # "exploration_config": {
+        #     "type": "StochasticSampling",
+        # },
         "callbacks": {
             "on_train_result": on_train_result,
         },

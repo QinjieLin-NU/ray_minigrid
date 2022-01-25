@@ -1,5 +1,5 @@
 env_config:
-    env_name: MiniGrid-DoorKey-8x8-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+    env_name: MiniGrid-DoorKey-MediumWrapper-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
 framework: torch
 seed: 123
 # gamma: 0.99
@@ -8,7 +8,7 @@ num_workers: 20
 # vf_loss_coeff: 0.01
 num_sgd_iter: 2
 sgd_minibatch_size: 256 #32 
-train_batch_size:  2560 #2560
+train_batch_size:  25600 #2560 #2560
 observation_filter: MeanStdFilter
 model:
     # use_lstm: true
@@ -20,7 +20,7 @@ model:
     # fcnet_hiddens: [256, 256]
     # fcnet_activation: relu
     conv_filters: [
-        [32, [7, 7], 3],
+        [32, [10, 10], 3],
         [32, [3, 3], 3],
     ]
 output: "/root/dev_ws/offline_dataset/ppo_doorkey"

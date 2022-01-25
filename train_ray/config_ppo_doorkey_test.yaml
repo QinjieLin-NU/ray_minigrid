@@ -1,0 +1,27 @@
+env_config:
+    env_name: MiniGrid-DoorKey-MediumRawPartial-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+framework: torch
+seed: 123
+lr: 0.0003 # 0.0003 #0.00005 #0.0003
+num_workers: 10
+num_envs_per_worker: 5
+num_sgd_iter: 2
+rollout_fragment_length: 500
+sgd_minibatch_size: 256 #256 
+train_batch_size:  64000  #64000
+model:
+    # use_lstm: false
+    # max_seq_len: 20
+    # lstm_cell_size: 256
+    # conv_activation: relu
+    dim: 9 #7
+    conv_filters: [ #change
+        [32, [3, 3], 1],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+    ]
+    # fcnet_hiddens: [256, 256]
+    # fcnet_activation: relu
+output: "/root/dev_ws/offline_dataset/ppo_doorkey_nofilter"
+output_max_file_size: 500000000 #500m

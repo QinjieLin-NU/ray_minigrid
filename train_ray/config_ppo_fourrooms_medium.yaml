@@ -1,0 +1,30 @@
+env_config:
+    env_name: MiniGrid-FourRooms-MediumRawPartial-v0 #MiniGrid-FourRooms-Continuous-v0 #MiniGrid-GoToDoor-5x5-v0 #MiniGrid-DoorKey-5x5-v0 #MiniGrid-Empty-5x5-v0
+framework: torch
+lr: 0.005 #0.0003
+seed: 12345
+gamma: 0.995
+num_workers: 10 #15
+num_envs_per_worker: 5
+num_sgd_iter: 2 #3 id for default training dataset
+rollout_fragment_length: 500
+sgd_minibatch_size:  1024 #512 
+train_batch_size:  40000 #10000 
+# observation_filter: MeanStdFilter
+model:
+    # use_lstm: true
+    # conv_activation: relu
+    # dim: 9
+    # grayscale: true
+    # zero_mean: false
+    # Reduced channel depth and kernel size from default
+    # fcnet_hiddens: [256, 256]
+    # fcnet_activation: relu
+    conv_filters: [
+        [32, [3, 3], 1],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+        [32, [2, 2], 2],
+    ]
+output: "/root/dev_ws/offline_dataset/ppo_fourrooms_notfilter"
+output_max_file_size: 500000000 #500m
